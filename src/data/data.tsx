@@ -92,17 +92,17 @@ export const SOCIALS = [
 	{
 		name: 'Instagram',
 		icon: RxInstagramLogo,
-		link: 'https://instagram.com',
+		link: 'https://instagram.com/qasimzaib',
 	},
 	{
 		name: 'Facebook',
 		icon: FaFacebook,
-		link: 'https://facebook.com',
+		link: 'https://www.facebook.com/zaib.qasim',
 	},
 	{
-		name: 'Twitter',
+		name: 'X',
 		icon: RxTwitterLogo,
-		link: 'https://twitter.com',
+		link: 'https://x.com/qasimzaib',
 	},
 ] as const;
 
@@ -288,17 +288,17 @@ export const FOOTER_DATA = [
 			{
 				name: 'YouTube',
 				icon: FaYoutube,
-				link: 'https://youtube.com',
+				link: 'https://www.youtube.com/qasimzaib',
 			},
 			{
 				name: 'GitHub',
 				icon: RxGithubLogo,
-				link: 'https://github.com',
+				link: 'https://github.com/qasimzaib',
 			},
 			{
 				name: 'Discord',
 				icon: RxDiscordLogo,
-				link: 'https://discord.com',
+				link: 'https://discord.com/qasimzaib.',
 			},
 		],
 	},
@@ -308,17 +308,17 @@ export const FOOTER_DATA = [
 			{
 				name: 'Instagram',
 				icon: RxInstagramLogo,
-				link: 'https://instagram.com',
+				link: 'https://instagram.com/qasimzaib',
 			},
 			{
 				name: 'Twitter',
 				icon: RxTwitterLogo,
-				link: 'https://twitter.com',
+				link: 'https://x.com/qasimzaib',
 			},
 			{
 				name: 'Linkedin',
 				icon: RxLinkedinLogo,
-				link: 'https://linkedin.com',
+				link: 'https://linkedin.com/in/qasimzaib',
 			},
 		],
 	},
@@ -326,19 +326,14 @@ export const FOOTER_DATA = [
 		title: 'About',
 		data: [
 			{
-				name: 'Become Sponsor',
+				name: 'Learn about me',
 				icon: null,
-				link: 'https://youtube.com',
-			},
-			{
-				name: 'Learning about me',
-				icon: null,
-				link: 'https://example.com',
+				link: '/about',
 			},
 			{
 				name: 'Contact Me',
 				icon: null,
-				link: 'mailto:contact@example.com',
+				link: 'mailto:zaib_qasim@example.com',
 			},
 		],
 	},
@@ -364,5 +359,5 @@ export const NAV_LINKS = [
 ] as const;
 
 export const LINKS = {
-	sourceCode: 'https://github.com/sanidhyy/space-portfolio',
+	sourceCode: 'https://github.com/qasimzaib',
 };
