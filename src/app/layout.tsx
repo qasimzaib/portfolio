@@ -4,6 +4,8 @@ import { PropsWithChildren } from 'react';
 import { cn } from '@/lib/utils';
 import { siteMetaData } from '@/config/site-meta-data';
 import './globals.css';
+import { Navbar } from '@/components/molecules/navbar';
+import { Footer } from '@/components/molecules/footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,7 +24,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
 					inter.className
 				)}
 			>
+				<Navbar />
 				{children}
+				<Footer />
 			</body>
 		</html>
 	);
