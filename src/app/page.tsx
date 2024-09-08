@@ -1,7 +1,12 @@
+import { Featured } from '@/components/molecules/featured';
 import Image from 'next/image';
 
 export default function Home() {
 	return (
-		<main className='flex min-h-screen flex-col items-center justify-between p-24'></main>
+		<main className='h-full w-full'>
+			<div className='flex flex-col gap-20'>
+				<Featured />
+			</div>
+		</main>
 	);
 }
