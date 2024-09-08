@@ -328,7 +328,7 @@ export const FOOTER_DATA = [
 			{
 				name: 'Learn about me',
 				icon: null,
-				link: '/about',
+				link: '#about',
 			},
 			{
 				name: 'Contact Me',
@@ -342,19 +342,19 @@ export const FOOTER_DATA = [
 export const NAV_LINKS = [
 	{
 		title: 'About me',
-		link: '/about',
+		link: '#about',
 	},
 	{
 		title: 'Skills',
-		link: '/skills',
+		link: '#skills',
 	},
 	{
 		title: 'Projects',
-		link: '/projects',
+		link: '#projects',
 	},
 	{
 		title: 'Contact',
-		link: '/contact',
+		link: '#contact',
 	},
 ] as const;
 
