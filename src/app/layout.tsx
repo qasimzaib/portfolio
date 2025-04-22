@@ -1,31 +1,24 @@
-import type { Metadata, Viewport } from 'next';
-import { Inter } from 'next/font/google';
-import { PropsWithChildren } from 'react';
-import { cn } from '@/lib/utils';
-import { siteMetaData } from '@/config/site-meta-data';
 import './globals.css';
-import { Navbar } from '@/components/molecules/navbar';
-import { Footer } from '@/components/molecules/footer';
-import { BackgroundCanvas } from '@/components/molecules/background-canvas';
+import { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+
+export const metadata: Metadata = {
+	title: 'Qasim Zaib | Portfolio',
+	description: 'Software Architect & Full‑Stack Developer portfolio',
+};
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata: Metadata = siteMetaData;
-
-export const viewport: Viewport = {
-	themeColor: '#030014',
-};
-
-export default function RootLayout({ children }: PropsWithChildren) {
+export default function RootLayout({
+	children,
+}: {
+	children: React.ReactNode;
+}) {
 	return (
-		<html lang='en'>
-			<body
-				className={cn(
-					'bg-[#030014] overflow-y-scroll overflow-x-hidden',
-					inter.className
-				)}
-			>
-				<BackgroundCanvas />
+		<html lang='en' className='scroll-smooth'>
+			<body className={inter.className}>
 				<Navbar />
 				{children}
 				<Footer />
