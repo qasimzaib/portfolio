@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 
+import { SkillCard } from '@/components/skills/skill-card';
 import { skills } from '@/data/resume';
 // import { SITE_CONFIG } from '@/lib/constants';
 
@@ -20,24 +21,34 @@ export default function SkillsPage() {
 				</p>
 			</div>
 
-			{/* Skills Categories - To be enhanced in Phase 3 */}
-			<div className="grid gap-10">
-				{skills.map((category, index) => (
-					<section key={`${category.label}-${index}`}>
+			{/* Skills Categories */}
+			<div className="grid gap-12">
+				{skills.map((category, categoryIndex) => (
+					<section key={`${category.label}-${categoryIndex}`}>
 						<h2 className="text-2xl font-bold mb-6">{category.label}</h2>
 						<div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-							{category.items.map(skill => (
-								<div
-									key={skill}
-									className="rounded-lg border bg-card p-4 shadow-sm flex items-center"
-								>
-									<span className="text-base font-medium">{skill}</span>
-								</div>
+							{category.items.map((skill, skillIndex) => (
+								<SkillCard
+									key={`${skill}-${skillIndex}`}
+									name={skill}
+									index={skillIndex}
+								/>
 							))}
 						</div>
 					</section>
 				))}
 			</div>
+
+			{/* Additional Info */}
+			<section className="mt-16 rounded-lg border bg-card p-6 shadow-sm">
+				<h2 className="text-2xl font-bold mb-4">Professional Development</h2>
+				<p className="text-muted-foreground">
+					I regularly engage in continuous learning to stay updated with the latest
+					technologies and best practices in software development and architecture. This
+					includes online courses, technical books, conferences, and participating in
+					developer communities.
+				</p>
+			</section>
 		</div>
 	);
 }

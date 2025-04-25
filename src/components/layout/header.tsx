@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { ThemeToggle } from '@/components/theme-toggle';
+import { Button } from '@/components/ui/button';
 import { NAV_LINKS } from '@/lib/constants';
 
 export function Header() {
@@ -35,7 +36,10 @@ export function Header() {
 		<header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md">
 			<div className="container mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
 				<Link href="/" className="flex items-center space-x-2">
-					<span className="text-xl font-bold">QZ</span>
+					<div className="relative flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-xl shadow-sm">
+						QZ
+					</div>
+					<span className="hidden md:inline-block font-semibold text-lg">Qasim Zaib</span>
 				</Link>
 
 				{/* Desktop navigation */}
@@ -57,8 +61,9 @@ export function Header() {
 				{/* Mobile navigation toggle */}
 				<div className="flex items-center gap-2 md:hidden">
 					<ThemeToggle />
-					<button
-						className="inline-flex items-center justify-center rounded-md p-2 text-muted-foreground hover:bg-muted hover:text-primary"
+					<Button
+						variant="ghost"
+						size="icon"
 						onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
 						aria-label="Toggle menu"
 					>
@@ -67,7 +72,7 @@ export function Header() {
 						) : (
 							<Bars3Icon className="h-6 w-6" />
 						)}
-					</button>
+					</Button>
 				</div>
 			</div>
 

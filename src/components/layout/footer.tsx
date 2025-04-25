@@ -1,107 +1,119 @@
+import { CodeBracketIcon, EnvelopeIcon, GlobeAltIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
 import { SITE_CONFIG, SOCIAL_LINKS } from '@/lib/constants';
 
+const socialIcons = {
+	GitHub: (className: string) => <CodeBracketIcon className={className} />,
+	LinkedIn: (className: string) => <GlobeAltIcon className={className} />,
+	Email: (className: string) => <EnvelopeIcon className={className} />,
+};
+
 export function Footer() {
 	return (
-		<footer className="border-t bg-background py-8">
-			<div className="container mx-auto px-4 sm:px-6 lg:px-8 grid gap-8 md:grid-cols-2">
-				<div>
+		<footer className="border-t bg-background py-12 md:py-16">
+			<div className="container mx-auto px-4 sm:px-6 lg:px-8 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+				<div className="space-y-4">
 					<Link href="/" className="flex items-center space-x-2">
-						<span className="text-xl font-bold">QZ</span>
+						<div className="relative flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-xl shadow-sm">
+							QZ
+						</div>
+						<span className="font-semibold text-lg">Qasim Zaib</span>
 					</Link>
-					<p className="mt-4 text-sm text-muted-foreground max-w-md">
+					<p className="text-sm text-muted-foreground max-w-md">
 						Software Architect & Full-Stack Developer with 10+ years of experience
 						building performant cloud products that scale.
 					</p>
 				</div>
-				<div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
-					<div className="space-y-3">
-						<h4 className="text-sm font-medium">Links</h4>
-						<ul className="space-y-2">
-							<li>
-								<Link
-									href="/about"
-									className="text-sm text-muted-foreground hover:text-primary"
-								>
-									About
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="/experience"
-									className="text-sm text-muted-foreground hover:text-primary"
-								>
-									Experience
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="/projects"
-									className="text-sm text-muted-foreground hover:text-primary"
-								>
-									Projects
-								</Link>
-							</li>
-						</ul>
-					</div>
-					<div className="space-y-3">
-						<h4 className="text-sm font-medium">More</h4>
-						<ul className="space-y-2">
-							<li>
-								<Link
-									href="/skills"
-									className="text-sm text-muted-foreground hover:text-primary"
-								>
-									Skills
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="/contact"
-									className="text-sm text-muted-foreground hover:text-primary"
-								>
-									Contact
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="/resume.pdf"
-									target="_blank"
-									className="text-sm text-muted-foreground hover:text-primary"
-								>
-									Resume
-								</Link>
-							</li>
-						</ul>
-					</div>
-					<div className="space-y-3">
-						<h4 className="text-sm font-medium">Social</h4>
-						<ul className="space-y-2">
-							{SOCIAL_LINKS.map(link => (
-								<li key={link.platform}>
-									<Link
-										href={link.url}
-										target={link.url.startsWith('http') ? '_blank' : undefined}
-										rel={
-											link.url.startsWith('http')
-												? 'noopener noreferrer'
-												: undefined
-										}
-										className="text-sm text-muted-foreground hover:text-primary"
-									>
-										{link.platform}
-									</Link>
-								</li>
-							))}
-						</ul>
+
+				<div className="space-y-4">
+					<h3 className="text-base font-medium">Navigation</h3>
+					<nav className="flex flex-col space-y-2">
+						<Link
+							href="/"
+							className="text-sm text-muted-foreground hover:text-primary transition-colors"
+						>
+							Home
+						</Link>
+						<Link
+							href="/about"
+							className="text-sm text-muted-foreground hover:text-primary transition-colors"
+						>
+							About
+						</Link>
+						<Link
+							href="/experience"
+							className="text-sm text-muted-foreground hover:text-primary transition-colors"
+						>
+							Experience
+						</Link>
+						<Link
+							href="/projects"
+							className="text-sm text-muted-foreground hover:text-primary transition-colors"
+						>
+							Projects
+						</Link>
+					</nav>
+				</div>
+
+				<div className="space-y-4">
+					<h3 className="text-base font-medium">Resources</h3>
+					<nav className="flex flex-col space-y-2">
+						<Link
+							href="/skills"
+							className="text-sm text-muted-foreground hover:text-primary transition-colors"
+						>
+							Skills
+						</Link>
+						<Link
+							href="/contact"
+							className="text-sm text-muted-foreground hover:text-primary transition-colors"
+						>
+							Contact
+						</Link>
+						<Link
+							href="/resume.pdf"
+							target="_blank"
+							className="text-sm text-muted-foreground hover:text-primary transition-colors"
+						>
+							Resume
+						</Link>
+					</nav>
+				</div>
+
+				<div className="space-y-4">
+					<h3 className="text-base font-medium">Connect</h3>
+					<div className="flex flex-col space-y-3">
+						{SOCIAL_LINKS.map(link => (
+							<Link
+								key={link.platform}
+								href={link.url}
+								target={link.url.startsWith('http') ? '_blank' : undefined}
+								rel={
+									link.url.startsWith('http') ? 'noopener noreferrer' : undefined
+								}
+								className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+							>
+								{link.platform in socialIcons &&
+									socialIcons[link.platform as keyof typeof socialIcons](
+										'h-4 w-4'
+									)}
+								<span>{link.platform}</span>
+							</Link>
+						))}
 					</div>
 				</div>
 			</div>
-			<div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-8 border-t pt-6">
-				<p className="text-center text-xs text-muted-foreground">
-					&copy; {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.
-				</p>
+
+			<div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-12 border-t pt-8">
+				<div className="flex flex-col md:flex-row justify-between items-center">
+					<p className="text-sm text-muted-foreground">
+						&copy; {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.
+					</p>
+					<p className="text-sm text-muted-foreground mt-2 md:mt-0">
+						Built with Next.js and TailwindCSS
+					</p>
+				</div>
 			</div>
 		</footer>
 	);

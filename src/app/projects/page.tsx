@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
 
+import { ProjectCard } from '@/components/projects/project-card';
 import { projects } from '@/data/resume';
 // import { SITE_CONFIG } from '@/lib/constants';
 
@@ -22,45 +22,33 @@ export default function ProjectsPage() {
 				</p>
 			</div>
 
-			{/* Projects Grid - To be enhanced in Phase 3 */}
-			<div className="grid gap-8 md:grid-cols-2">
-				{projects.map((project, index) => (
-					<div
-						key={`${project.name}-${index}`}
-						className="rounded-lg border bg-card shadow-sm overflow-hidden"
-					>
-						<div className="aspect-video w-full bg-muted" />
-						<div className="p-6">
-							<h2 className="text-2xl font-bold">{project.name}</h2>
-							<p className="mt-2 text-muted-foreground">{project.description}</p>
+			{/* Project Categories */}
+			<section className="mb-16">
+				<h2 className="text-2xl font-bold mb-6">Featured Work</h2>
+				<div className="grid gap-8 md:grid-cols-2">
+					{projects.map((project, index) => (
+						<ProjectCard key={`${project.name}-${index}`} {...project} index={index} />
+					))}
+				</div>
+			</section>
 
-							<div className="mt-4 flex flex-wrap gap-2">
-								{project.tech.map(tech => (
-									<span
-										key={tech}
-										className="inline-flex items-center rounded-md bg-secondary px-2 py-1 text-xs font-medium"
-									>
-										{tech}
-									</span>
-								))}
-							</div>
-
-							{project.link && (
-								<div className="mt-6">
-									<Link
-										href={project.link}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-primary hover:underline"
-									>
-										View Project →
-									</Link>
-								</div>
-							)}
-						</div>
-					</div>
-				))}
-			</div>
+			{/* Project Approach */}
+			<section className="rounded-lg border bg-card p-6 shadow-sm">
+				<h2 className="text-2xl font-bold mb-4">My Approach to Projects</h2>
+				<div className="text-muted-foreground space-y-4">
+					<p>
+						When approaching new projects, I focus on understanding the business goals
+						first, then architect solutions that prioritize scalability,
+						maintainability, and performance.
+					</p>
+					<p>
+						I believe in choosing the right tech stack for each specific problem rather
+						than forcing a one-size-fits-all approach. This pragmatic philosophy has
+						helped me deliver successful solutions across various domains and
+						industries.
+					</p>
+				</div>
+			</section>
 		</div>
 	);
 }

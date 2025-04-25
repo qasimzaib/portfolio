@@ -1,8 +1,6 @@
 import './globals.css';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
-import { GeistSans } from 'geist/font/sans';
 import { Metadata, Viewport } from 'next';
+import { GeistSans } from 'geist/font/sans';
 
 import { Footer } from '@/components/layout/footer';
 import { Header } from '@/components/layout/header';
@@ -93,14 +91,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
 					enableSystem
 					disableTransitionOnChange
 				>
-					<div className="relative flex min-h-screen flex-col">
+					<div className="flex min-h-screen flex-col">
 						<Header />
 						<main className="flex-1">{children}</main>
 						<Footer />
 					</div>
 				</ThemeProvider>
-				<Analytics />
-				<SpeedInsights />
 			</body>
 		</html>
 	);

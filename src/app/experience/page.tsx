@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 
+import { TimelineItem } from '@/components/experience/timeline-item';
 import { experiences } from '@/data/resume';
 // import { SITE_CONFIG } from '@/lib/constants';
 
@@ -21,52 +22,46 @@ export default function ExperiencePage() {
 				</p>
 			</div>
 
-			{/* Experience Timeline - To be enhanced in Phase 3 */}
-			<div className="space-y-12">
-				{experiences.map((exp, index) => (
-					<div
-						key={`${exp.company}-${index}`}
-						className="rounded-lg border bg-card p-6 shadow-sm"
-					>
-						<div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-							<div>
-								<h2 className="text-2xl font-bold">{exp.role}</h2>
-								<p className="text-xl text-muted-foreground">{exp.company}</p>
-							</div>
-							<div className="mt-2 md:mt-0">
-								<span className="inline-flex items-center rounded-md bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
-									{exp.period}
-								</span>
-							</div>
-						</div>
+			{/* Experience Timeline */}
+			<div className="relative">
+				{/* Timeline Line (Desktop) */}
+				<div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-border transform -translate-x-1/2 z-0" />
 
-						<div className="space-y-4">
-							<div>
-								<h3 className="text-lg font-medium mb-2">Highlights</h3>
-								<ul className="list-disc list-inside space-y-1 text-muted-foreground">
-									{exp.highlights.map((highlight, idx) => (
-										<li key={idx}>{highlight}</li>
-									))}
-								</ul>
-							</div>
-
-							<div>
-								<h3 className="text-lg font-medium mb-2">Technologies</h3>
-								<div className="flex flex-wrap gap-2">
-									{exp.tech.map(tech => (
-										<span
-											key={tech}
-											className="inline-flex items-center rounded-md bg-secondary px-2 py-1 text-xs font-medium"
-										>
-											{tech}
-										</span>
-									))}
-								</div>
-							</div>
+				<div className="space-y-12 md:space-y-0">
+					{experiences.map((exp, index) => (
+						<div
+							key={`${exp.company}-${index}`}
+							className={`md:flex ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+						>
+							<div className="md:w-1/2" />
+							<TimelineItem
+								{...exp}
+								index={index}
+								isLast={index === experiences.length - 1}
+								className={`md:w-1/2 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}
+							/>
 						</div>
-					</div>
-				))}
+					))}
+				</div>
 			</div>
+
+			{/* Professional Summary */}
+			<section className="mt-20 rounded-lg border bg-card p-6 shadow-sm">
+				<h2 className="text-2xl font-bold mb-4">Professional Summary</h2>
+				<div className="text-muted-foreground space-y-4">
+					<p>
+						Throughout my career, I&apos;ve consistently led the architecture and
+						delivery of complex software solutions that solve real business problems. My
+						focus on quality, performance, and maintainability has helped organizations
+						achieve their strategic goals while building robust technology foundations.
+					</p>
+					<p>
+						I excel in bridging the gap between business requirements and technical
+						implementation, ensuring that projects deliver measurable value while
+						maintaining high engineering standards.
+					</p>
+				</div>
+			</section>
 		</div>
 	);
 }

@@ -1,4 +1,11 @@
+import {
+	CodeBracketIcon,
+	CommandLineIcon,
+	ServerIcon,
+	UserGroupIcon,
+} from '@heroicons/react/24/outline';
 import { Metadata } from 'next';
+import Link from 'next/link';
 
 // import { SITE_CONFIG } from '@/lib/constants';
 
@@ -20,9 +27,8 @@ export default function AboutPage() {
 				</p>
 			</div>
 
-			{/* Bio Section */}
-			<section className="mb-16 max-w-4xl">
-				<h2 className="text-2xl font-bold mb-4">My Background</h2>
+			{/* Bio Section with Visual Elements */}
+			<section className="mb-16 grid md:grid-cols-2 gap-12 items-center">
 				<div className="space-y-4 text-lg">
 					<p>
 						I&apos;m Qasim Zaib — a passionate software architect with 10+ years&apos;
@@ -42,34 +48,51 @@ export default function AboutPage() {
 						time and meet or exceed expectations.
 					</p>
 				</div>
+				<div className="bg-card border rounded-lg p-8 shadow-sm">
+					<div className="aspect-square bg-muted rounded-full max-w-xs mx-auto flex items-center justify-center">
+						<span className="text-8xl font-bold text-secondary-foreground/20">QZ</span>
+					</div>
+				</div>
 			</section>
 
-			{/* Skills Highlight */}
-			<section className="mb-16">
-				<h2 className="text-2xl font-bold mb-6">Core Competencies</h2>
-				<div className="grid md:grid-cols-2 gap-8">
-					<div className="space-y-2">
+			{/* Skills Highlight with Icons */}
+			<section className="mb-16 bg-secondary/50 rounded-lg p-8">
+				<h2 className="text-2xl font-bold mb-8">Core Competencies</h2>
+				<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+					<div className="space-y-4 flex flex-col items-center text-center p-4">
+						<div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
+							<CommandLineIcon className="h-6 w-6 text-primary" />
+						</div>
 						<h3 className="text-xl font-medium">Technical Leadership</h3>
 						<p className="text-muted-foreground">
 							Leading cross-functional teams to deliver complex projects on time and
 							with high quality.
 						</p>
 					</div>
-					<div className="space-y-2">
+					<div className="space-y-4 flex flex-col items-center text-center p-4">
+						<div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
+							<ServerIcon className="h-6 w-6 text-primary" />
+						</div>
 						<h3 className="text-xl font-medium">Architecture Design</h3>
 						<p className="text-muted-foreground">
 							Designing scalable cloud-native solutions using microservices,
 							serverless, and modern paradigms.
 						</p>
 					</div>
-					<div className="space-y-2">
+					<div className="space-y-4 flex flex-col items-center text-center p-4">
+						<div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
+							<CodeBracketIcon className="h-6 w-6 text-primary" />
+						</div>
 						<h3 className="text-xl font-medium">Full-Stack Development</h3>
 						<p className="text-muted-foreground">
 							Building high-performance applications with React, Next.js, Node.js, and
 							.NET Core.
 						</p>
 					</div>
-					<div className="space-y-2">
+					<div className="space-y-4 flex flex-col items-center text-center p-4">
+						<div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
+							<UserGroupIcon className="h-6 w-6 text-primary" />
+						</div>
 						<h3 className="text-xl font-medium">Cloud Infrastructure</h3>
 						<p className="text-muted-foreground">
 							Implementing and optimizing solutions on AWS, Azure, and Vercel.
@@ -79,8 +102,8 @@ export default function AboutPage() {
 			</section>
 
 			{/* Philosophy Section */}
-			<section className="mb-16 max-w-4xl">
-				<h2 className="text-2xl font-bold mb-4">My Approach</h2>
+			<section className="mb-16 rounded-lg border bg-card p-8 shadow-sm">
+				<h2 className="text-2xl font-bold mb-6">My Approach</h2>
 				<div className="space-y-4 text-lg">
 					<p>
 						I believe in a pragmatic approach to software development—choosing the right
@@ -97,17 +120,19 @@ export default function AboutPage() {
 				</div>
 			</section>
 
-			{/* Personal Interests */}
-			<section className="max-w-4xl">
-				<h2 className="text-2xl font-bold mb-4">Beyond Coding</h2>
-				<div className="space-y-4 text-lg">
-					<p>
-						When I&apos;m not architecting solutions or diving deep into code, I enjoy
-						staying updated with the latest tech trends, contributing to open-source
-						projects, and mentoring aspiring developers. I&apos;m also an avid reader
-						and enjoy exploring new hiking trails whenever possible.
-					</p>
-				</div>
+			{/* Call to Action */}
+			<section className="text-center max-w-3xl mx-auto">
+				<h2 className="text-2xl font-bold mb-4">Interested in Working Together?</h2>
+				<p className="text-muted-foreground mb-6">
+					I&apos;m always open to discussing new projects, creative ideas, or
+					opportunities to be part of your vision.
+				</p>
+				<Link
+					href="/contact"
+					className="inline-flex h-12 items-center justify-center rounded-md bg-primary px-8 text-base font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
+				>
+					Get in Touch
+				</Link>
 			</section>
 		</div>
 	);
