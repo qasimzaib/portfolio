@@ -1,6 +1,7 @@
 import { CodeBracketIcon, EnvelopeIcon, GlobeAltIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
+import { OutboundLink } from '@/components/ui/outbound-link';
 import { SITE_CONFIG, SOCIAL_LINKS } from '@/lib/constants';
 
 const socialIcons = {
@@ -11,7 +12,7 @@ const socialIcons = {
 
 export function Footer() {
 	return (
-		<footer className="border-t bg-background py-12 md:py-16">
+		<footer className="border-t bg-background py-8 md:py-16">
 			<div className="container mx-auto px-4 sm:px-6 lg:px-8 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
 				<div className="space-y-4">
 					<Link href="/" className="flex items-center space-x-2">
@@ -71,13 +72,13 @@ export function Footer() {
 						>
 							Contact
 						</Link>
-						<Link
+						<OutboundLink
 							href="/resume.pdf"
-							target="_blank"
 							className="text-sm text-muted-foreground hover:text-primary transition-colors"
+							trackingId="footer-resume-download"
 						>
 							Resume
-						</Link>
+						</OutboundLink>
 					</nav>
 				</div>
 
@@ -85,27 +86,24 @@ export function Footer() {
 					<h3 className="text-base font-medium">Connect</h3>
 					<div className="flex flex-col space-y-3">
 						{SOCIAL_LINKS.map(link => (
-							<Link
+							<OutboundLink
 								key={link.platform}
 								href={link.url}
-								target={link.url.startsWith('http') ? '_blank' : undefined}
-								rel={
-									link.url.startsWith('http') ? 'noopener noreferrer' : undefined
-								}
 								className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+								trackingId={`footer-${link.platform.toLowerCase()}`}
 							>
 								{link.platform in socialIcons &&
 									socialIcons[link.platform as keyof typeof socialIcons](
 										'h-4 w-4'
 									)}
 								<span>{link.platform}</span>
-							</Link>
+							</OutboundLink>
 						))}
 					</div>
 				</div>
 			</div>
 
-			<div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-12 border-t pt-8">
+			<div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-12 border-t pt-6">
 				<div className="flex flex-col md:flex-row justify-between items-center">
 					<p className="text-sm text-muted-foreground">
 						&copy; {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.

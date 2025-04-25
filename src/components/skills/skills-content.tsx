@@ -10,6 +10,7 @@ import {
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
+import { LazyLoad } from '@/components/lazy-load';
 import { SkillCard } from '@/components/skills/skill-card';
 import { Button } from '@/components/ui/button';
 import { SkillCategory } from '@/lib/types';
@@ -124,15 +125,17 @@ export function SkillsContent({ skills }: SkillsContentProps) {
 							<h2 className="text-2xl font-bold">{category.label}</h2>
 						</div>
 						<div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-							{category.items.map((skill, skillIndex) => (
-								<SkillCard
-									key={`${skill}-${skillIndex}`}
-									name={skill}
-									index={skillIndex}
-									proficiency={getProficiency(skill)}
-									category={category.label}
-								/>
-							))}
+							<LazyLoad threshold={0.2}>
+								{category.items.map((skill, skillIndex) => (
+									<SkillCard
+										key={`${skill}-${skillIndex}`}
+										name={skill}
+										index={skillIndex}
+										proficiency={getProficiency(skill)}
+										category={category.label}
+									/>
+								))}
+							</LazyLoad>
 						</div>
 					</motion.section>
 				))}
@@ -150,42 +153,41 @@ export function SkillsContent({ skills }: SkillsContentProps) {
 				<div className="flex flex-wrap gap-8">
 					<div className="flex items-center">
 						<div className="flex space-x-1 mr-2">
-							{[1].map(level => (
-								<div key={level} className="h-2 w-2 rounded-full bg-primary" />
-							))}
-							{[2, 3, 4, 5].map(level => (
-								<div key={level} className="h-2 w-2 rounded-full bg-muted" />
-							))}
+							<div className="h-2 w-2 rounded-full bg-primary" />
+							<div className="h-2 w-2 rounded-full bg-muted" />
+							<div className="h-2 w-2 rounded-full bg-muted" />
+							<div className="h-2 w-2 rounded-full bg-muted" />
+							<div className="h-2 w-2 rounded-full bg-muted" />
 						</div>
 						<span className="text-sm text-muted-foreground">Beginner</span>
 					</div>
 					<div className="flex items-center">
 						<div className="flex space-x-1 mr-2">
-							{[1, 2, 3].map(level => (
-								<div key={level} className="h-2 w-2 rounded-full bg-primary" />
-							))}
-							{[4, 5].map(level => (
-								<div key={level} className="h-2 w-2 rounded-full bg-muted" />
-							))}
+							<div className="h-2 w-2 rounded-full bg-primary" />
+							<div className="h-2 w-2 rounded-full bg-primary" />
+							<div className="h-2 w-2 rounded-full bg-primary" />
+							<div className="h-2 w-2 rounded-full bg-muted" />
+							<div className="h-2 w-2 rounded-full bg-muted" />
 						</div>
 						<span className="text-sm text-muted-foreground">Intermediate</span>
 					</div>
 					<div className="flex items-center">
 						<div className="flex space-x-1 mr-2">
-							{[1, 2, 3, 4].map(level => (
-								<div key={level} className="h-2 w-2 rounded-full bg-primary" />
-							))}
-							{[5].map(level => (
-								<div key={level} className="h-2 w-2 rounded-full bg-muted" />
-							))}
+							<div className="h-2 w-2 rounded-full bg-primary" />
+							<div className="h-2 w-2 rounded-full bg-primary" />
+							<div className="h-2 w-2 rounded-full bg-primary" />
+							<div className="h-2 w-2 rounded-full bg-primary" />
+							<div className="h-2 w-2 rounded-full bg-muted" />
 						</div>
 						<span className="text-sm text-muted-foreground">Advanced</span>
 					</div>
 					<div className="flex items-center">
 						<div className="flex space-x-1 mr-2">
-							{[1, 2, 3, 4, 5].map(level => (
-								<div key={level} className="h-2 w-2 rounded-full bg-primary" />
-							))}
+							<div className="h-2 w-2 rounded-full bg-primary" />
+							<div className="h-2 w-2 rounded-full bg-primary" />
+							<div className="h-2 w-2 rounded-full bg-primary" />
+							<div className="h-2 w-2 rounded-full bg-primary" />
+							<div className="h-2 w-2 rounded-full bg-primary" />
 						</div>
 						<span className="text-sm text-muted-foreground">Expert</span>
 					</div>

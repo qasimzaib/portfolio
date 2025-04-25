@@ -68,10 +68,15 @@ export function SkillCard({
 			}}
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
+			onFocus={() => setIsHovered(true)}
+			onBlur={() => setIsHovered(false)}
 			className={cn(
-				'group relative rounded-lg border bg-card p-4 shadow-sm transition-all hover:shadow-md flex items-center',
+				'group relative rounded-lg border bg-card p-4 shadow-sm transition-all hover:shadow-md flex items-center focus-within:ring-2 focus-within:ring-primary',
 				className
 			)}
+			tabIndex={0}
+			role="button"
+			aria-label={`Skill: ${name} - ${category}`}
 		>
 			{/* Skill indicator dot */}
 			<div className={`h-3 w-3 rounded-full mr-3 ${getCategoryColor(category)}`} />

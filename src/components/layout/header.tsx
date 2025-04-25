@@ -33,9 +33,16 @@ export function Header() {
 	}, [mobileMenuOpen]);
 
 	return (
-		<header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md">
+		<header
+			className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md"
+			role="banner"
+		>
 			<div className="container mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
-				<Link href="/" className="flex items-center space-x-2">
+				<Link
+					href="/"
+					className="flex items-center space-x-2"
+					aria-label="Qasim Zaib's portfolio homepage"
+				>
 					<div className="relative flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-xl shadow-sm">
 						QZ
 					</div>
@@ -43,7 +50,7 @@ export function Header() {
 				</Link>
 
 				{/* Desktop navigation */}
-				<nav className="hidden md:flex items-center gap-6">
+				<nav className="hidden md:flex items-center gap-6" aria-label="Main navigation">
 					{NAV_LINKS.map(link => (
 						<Link
 							key={link.href}
@@ -51,6 +58,7 @@ export function Header() {
 							className={`text-sm font-medium transition-colors hover:text-primary ${
 								pathname === link.href ? 'text-primary' : 'text-muted-foreground'
 							}`}
+							aria-current={pathname === link.href ? 'page' : undefined}
 						>
 							{link.label}
 						</Link>
@@ -65,7 +73,9 @@ export function Header() {
 						variant="ghost"
 						size="icon"
 						onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-						aria-label="Toggle menu"
+						aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+						aria-expanded={mobileMenuOpen}
+						aria-controls="mobile-menu"
 					>
 						{mobileMenuOpen ? (
 							<XMarkIcon className="h-6 w-6" />
@@ -80,11 +90,13 @@ export function Header() {
 			<AnimatePresence>
 				{mobileMenuOpen && (
 					<motion.div
+						id="mobile-menu"
 						initial={{ opacity: 0, height: 0 }}
 						animate={{ opacity: 1, height: 'auto' }}
 						exit={{ opacity: 0, height: 0 }}
 						transition={{ duration: 0.3 }}
 						className="md:hidden bg-background border-b"
+						aria-label="Mobile navigation"
 					>
 						<div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 space-y-3">
 							{NAV_LINKS.map(link => (
@@ -97,6 +109,7 @@ export function Header() {
 											: 'text-muted-foreground'
 									}`}
 									onClick={() => setMobileMenuOpen(false)}
+									aria-current={pathname === link.href ? 'page' : undefined}
 								>
 									{link.label}
 								</Link>

@@ -2,9 +2,11 @@
 
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 import { useState } from 'react';
 
+import { LazyLoad } from '@/components/lazy-load';
+import { Image } from '@/components/ui/image';
+import { OutboundLink } from '@/components/ui/outbound-link';
 import { cn } from '@/lib/utils';
 import { Project } from '@/lib/types';
 
@@ -42,7 +44,16 @@ export function ProjectCard({
 		>
 			<div className="aspect-video w-full bg-muted relative overflow-hidden">
 				{image ? (
-					<div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
+					<LazyLoad>
+						<Image
+							src={image}
+							alt={name}
+							width={600}
+							height={340}
+							className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+						/>
+						<div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
+					</LazyLoad>
 				) : (
 					<div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-secondary/50" />
 				)}
@@ -102,15 +113,14 @@ export function ProjectCard({
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ delay: 0.3 }}
 					>
-						<Link
+						<OutboundLink
 							href={link}
-							target="_blank"
-							rel="noopener noreferrer"
 							className="inline-flex items-center text-sm font-medium text-primary hover:underline group/link"
+							trackingId={`project-link-${name.toLowerCase().replace(/\s+/g, '-')}`}
 						>
 							View Project
 							<ArrowTopRightOnSquareIcon className="ml-1 h-4 w-4 transition-transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1" />
-						</Link>
+						</OutboundLink>
 					</motion.div>
 				)}
 			</div>
