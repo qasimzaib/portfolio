@@ -1,5 +1,5 @@
 export default function About() {
-	let abc = 123;
+	let abc = 12345;
 
 	return (
 		<section id="about" className="py-20 container mx-auto px-6">
