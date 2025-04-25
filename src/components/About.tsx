@@ -1,4 +1,6 @@
 export default function About() {
+	let abc = 123;
+
 	return (
 		<section id="about" className="py-20 container mx-auto px-6">
 			<h2 className="text-3xl font-bold mb-6">About</h2>
