@@ -8,6 +8,7 @@ import { Header } from '@/components/layout/header';
 import { ThemeProvider } from '@/components/providers/theme-provider';
 import { SITE_CONFIG } from '@/lib/constants';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const viewport: Viewport = {
 	width: 'device-width',
@@ -94,6 +95,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 					disableTransitionOnChange
 				>
 					<Analytics />
+					<SpeedInsights />
 					<div className="flex min-h-screen flex-col">
 						<Header />
 						<main className="flex-1">{children}</main>
