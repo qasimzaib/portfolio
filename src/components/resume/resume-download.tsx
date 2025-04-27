@@ -16,16 +16,10 @@ export function ResumeDownload({ className }: ResumeDownloadProps) {
 	const handleDownload = () => {
 		setIsDownloading(true);
 
-		// Track the download event (can be integrated with analytics later)
-		console.log('Resume download started');
-		trackDownload('Qasim_Zaib_Resume.pdf');
+		trackDownload('resume.pdf');
 
-		// Simulate a small delay to show the downloading state
 		setTimeout(() => {
 			setIsDownloading(false);
-
-			// Log completion (for analytics integration)
-			console.log('Resume download completed');
 		}, 1500);
 	};
 

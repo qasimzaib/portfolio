@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 import { ContactForm } from '@/components/contact/contact-form';
 import { ResumeDownload } from '@/components/resume/resume-download';
 import { OutboundLink } from '@/components/ui/outbound-link';
-// import { SITE_CONFIG, SOCIAL_LINKS } from '@/lib/constants';
 
 export function ContactContent() {
 	return (
