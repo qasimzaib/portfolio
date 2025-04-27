@@ -2,12 +2,12 @@ import './globals.css';
 import { Metadata, Viewport } from 'next';
 import { GeistSans } from 'geist/font/sans';
 
-import { AnalyticsProvider } from '@/components/providers/analytics-provider';
 import { BrowserCheck } from '@/components/browser-check';
 import { Footer } from '@/components/layout/footer';
 import { Header } from '@/components/layout/header';
 import { ThemeProvider } from '@/components/providers/theme-provider';
 import { SITE_CONFIG } from '@/lib/constants';
+import { Analytics } from '@vercel/analytics/react';
 
 export const viewport: Viewport = {
 	width: 'device-width',
@@ -93,14 +93,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
 					enableSystem
 					disableTransitionOnChange
 				>
-					<AnalyticsProvider>
-						<div className="flex min-h-screen flex-col">
-							<Header />
-							<main className="flex-1">{children}</main>
-							<Footer />
-							<BrowserCheck />
-						</div>
-					</AnalyticsProvider>
+					<Analytics />
+					<div className="flex min-h-screen flex-col">
+						<Header />
+						<main className="flex-1">{children}</main>
+						<Footer />
+						<BrowserCheck />
+					</div>
 				</ThemeProvider>
 			</body>
 		</html>
