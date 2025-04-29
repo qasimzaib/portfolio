@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
+import { Particles } from './particles';
 
 const roles = [
 	'Software Architect',
@@ -28,7 +29,6 @@ export function HeroSection() {
 				setDisplayText(currentRole.substring(0, displayText.length + 1));
 
 				if (displayText.length === currentRole.length) {
-					// Wait a bit before starting to delete
 					setTypingSpeed(1500);
 					setIsDeleting(true);
 				} else {
@@ -65,42 +65,9 @@ export function HeroSection() {
 		show: { opacity: 1, y: 0 },
 	};
 
-	// Background particles animation
-	const particles = Array.from({ length: 20 }).map((_, i) => ({
-		id: i,
-		x: Math.random() * 100,
-		y: Math.random() * 100,
-		size: Math.random() * 10 + 5,
-		duration: Math.random() * 20 + 10,
-	}));
-
 	return (
 		<section className="relative py-20 md:py-32 lg:py-40 overflow-hidden">
-			{/* Animated background particles */}
-			<div className="absolute inset-0 pointer-events-none">
-				{particles.map(particle => (
-					<motion.div
-						key={particle.id}
-						className="absolute rounded-full bg-primary/5 dark:bg-primary/10"
-						style={{
-							left: `${particle.x}%`,
-							top: `${particle.y}%`,
-							width: `${particle.size}px`,
-							height: `${particle.size}px`,
-						}}
-						animate={{
-							y: ['0%', '100%', '0%'],
-							opacity: [0.2, 0.8, 0.2],
-						}}
-						transition={{
-							duration: particle.duration,
-							repeat: Infinity,
-							ease: 'easeInOut',
-						}}
-					/>
-				))}
-				<div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-background" />
-			</div>
+			<Particles />
 
 			<div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 				<motion.div
